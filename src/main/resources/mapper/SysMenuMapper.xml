@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhd.mapper.SysMenuMapper">
+
+    <!-- 映射 -->
+    <resultMap id="BaseMenuMapper" type="com.lhd.entity.SysMenu">
+        <id property="id" column="id"/>
+        <result property="roleId" column="roleId"/>
+        <result property="menuId" column="menuId"/>
+    </resultMap>
+
+    <!-- 查询roleId，通过userId -->
+    <select id="selectRoleIdByUserId" resultType="java.lang.String" parameterType="java.lang.String">
+        SELECT rm.menuId
+        FROM sys_role_menu rm
+        WHERE rm.roleId = #{roleId}
+    </select>
+
+    <!-- 通过menuid获取menu对象 -->
+    <select id="selectMenuByMenuId" resultMap="BaseMenuMapper" parameterType="java.lang.String">
+        SELECT m.*
+        FROM sys_menu m
+        WHERE m.id = #{menuId} and useable = 1;
+    </select>
+
+    <!-- 添加rolemenu数据 -->
+    <insert id="insertRoleMenu" parameterType="com.lhd.entity.SysRoleMenu">
+        INSERT INTO sys_role_menu(id,roleId,menuId)
+        VALUES(#{roleMenu.id},#{roleMenu.roleId},#{roleMenu.menuId});
+    </insert>
+
+</mapper>

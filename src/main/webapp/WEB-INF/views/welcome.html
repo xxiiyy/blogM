@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>欢迎使用</title>
+
+	<!-- Import google fonts - Heading first/ text second -->
+	<!--<link rel='stylesheet' type='text/css' href='http://fonts.useso.com/css?family=Open+Sans:400,700|Droid+Sans:400,700' />
+	--><!--[if lt IE 9]>
+	<link href="http://fonts.useso.com/css?family=Open+Sans:400" rel="stylesheet" type="text/css" />
+	<link href="http://fonts.useso.com/css?family=Open+Sans:700" rel="stylesheet" type="text/css" />
+	<link href="http://fonts.useso.com/css?family=Droid+Sans:400" rel="stylesheet" type="text/css" />
+	<link href="http://fonts.useso.com/css?family=Droid+Sans:700" rel="stylesheet" type="text/css" />
+	<![endif]-->
+
+	<!-- Favicon and touch icons -->
+	<link rel="shortcut icon" href="/resources/assets/ico/favicon.ico" type="image/x-icon" />
+
+	<!-- Css files -->
+	<link href="/resources/assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/resources/assets/css/jquery.mmenu.css" rel="stylesheet">
+	<link href="/resources/assets/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/resources/assets/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+	<link href="/resources/assets/css/style.min.css" rel="stylesheet">
+	<link href="/resources/assets/css/add-ons.min.css" rel="stylesheet">
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+<div class="container-fluid content">
+	<div class="row">
+		<!-- start: Content -->
+		<div class="main sidebar-minified">
+			欢迎使用
+		</div>
+		<!-- end: Content -->
+	</div><!--/container-->
+
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">修改组名</h4>
+				</div>
+				<div class="modal-body">
+					<form action="/classify/classify-update" method="post" enctype="multipart/form-data" class="form-horizontal ">
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="classify">组名</label>
+							<div class="col-md-6">
+								<input type="hidden" id="idM" name="id" class="form-control">
+								<input type="text" id="classifyM" name="classify"
+									   class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="form-group" style="margin-left: 350px">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">修改</button>
+						</div>
+
+					</form>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div class="clearfix"></div>
+</div>
+
+</body>
+	<!-- start: JavaScript-->
+	<!--[if !IE]>-->
+
+	<script src="/resources/assets/js/jquery-2.1.1.min.js"></script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+	
+	<script src="/resources/assets/js/jquery-1.11.1.min.js"></script>
+	
+	<![endif]-->
+
+	<!--[if !IE]>-->
+
+	<script type="text/javascript">
+		window.jQuery || document.write("<script src='/resources/assets/js/jquery-2.1.1.min.js'>"+"<"+"/script>");
+	</script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+	
+	<script type="text/javascript">
+		window.jQuery || document.write("<script src='/resources/assets/js/jquery-1.11.1.min.js'>"+"<"+"/script>");
+	</script>
+		
+	<![endif]-->
+
+	
+	<!-- page scripts -->
+	<script src="/resources/assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js"></script>
+	<script src="/resources/assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="/resources/assets/plugins/datatables/js/dataTables.bootstrap.min.js"></script>
+	
+	<!-- theme scripts -->
+	<script src="/resources/assets/js/SmoothScroll.js"></script>
+	<script src="/resources/assets/js/jquery.mmenu.min.js"></script>
+	<script src="/resources/assets/js/core.min.js"></script>
+	<script src="/resources/assets/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		$(function(){
+			// dom加载完毕
+			var $m_btn = $('#modalBtn');
+			var $modal = $('#myModal');
+			$m_btn.on('click', function(){
+				$modal.modal({backdrop: 'static'});
+			});
+			// 测试 bootstrap 居中
+			$modal.on('shown.bs.modal', function(){
+				var $this = $(this);
+				var $modal_dialog = $this.find('.modal-dialog');
+				var m_top = ( $(window).height() - $modal_dialog.height() )/2;
+				$modal_dialog.css({'margin': m_top + 'px auto'});
+			});
+		});
+	</script>
+	<!-- inline scripts related to this page -->
+	<!-- end: JavaScript-->
+	<script type="text/javascript">
+		$('.classify-u').click(function () {
+			var id = $(this).data('uid');
+			var classify = $(this).data('cid');
+			$('#idM').val(id);
+			$('#classifyM').val(classify);
+        });
+	</script>
+	<script type="text/javascript">
+		$(".classify-d").click(function () {
+			if(confirm("是否删除？")) {
+				var id = $(this).data('did');
+				jQuery.ajax({
+					headers : {
+						'Accept' : 'application/json',
+						'Content-Type' : 'application/json'
+					},
+					type : "POST",
+					url : "/classify/classify-delete/"+id,
+					success : function(message, tst, jqXHR) {
+						if(confirm(message.message)) {}
+						document.location.reload();
+					}
+				});
+			}
+		})
+	</script>
+</html>

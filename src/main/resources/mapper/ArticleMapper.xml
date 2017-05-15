@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhd.mapper.ArticleMapper">
+
+    <!-- 映射 -->
+    <!--<resultMap id="BaseArticleDtoMapper" type="com.lhd.dto.ArticleDto">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="subtitle" column="subtitle"/>
+        <result property="author" column="author"/>
+        <result property="tag" column="tag"/>
+        <result property="classify" column="classify"/>
+        <result property="click" column="click"/>
+        <result property="cover" column="cover"/>
+        <result property="updateTime" column="updateTime"/>
+        <result property="createTime" column="createTime"/>
+        <result property="updateBy" column="updateBy"/>
+        <result property="createBy" column="createBy"/>
+    </resultMap>-->
+
+    <select id="selectArticleList" parameterType="java.util.HashMap" resultType="com.lhd.dto.ArticleDto">
+        SELECT b.id,b.title,b.subtitle,b.author,c.classify,b.click
+        FROM sys_classify c,sys_blog b
+        <where>
+            and c.id = b.classifyId
+            <if test='paramMap.classify != null and paramMap.classify != ""'>
+                and c.id = #{paramMap.classify}
+            </if>
+        </where>
+        limit #{paramMap.startNo},#{paramMap.pageSize};
+    </select>
+
+    <select id="selectArticle" parameterType="java.lang.String" resultType="com.lhd.dto.ArticleDto">
+        SELECT b.id,b.title,b.subtitle,b.author,b.tag,c.classify,
+                b.click,b.cover,b.content
+        FROM sys_classify c,sys_blog b
+        <where>
+            and c.id = b.classifyId
+            <if test='articleId != null and articleId != ""'>
+                and b.id = #{articleId}
+            </if>
+        </where>
+    </select>
+
+    <!-- 更新文章 -->
+    <update id="updateArticle" parameterType="com.lhd.entity.Article">
+        UPDATE sys_blog
+        SET title = #{title,jdbcType=VARCHAR},
+            subtitle = #{subtitle,jdbcType=VARCHAR},
+            content = #{content,jdbcType=VARCHAR},
+            author = #{author,jdbcType=VARCHAR},
+            tag = #{tag,jdbcType=VARCHAR},
+            classifyId = #{classifyId,jdbcType=VARCHAR},
+            updateBy = #{updateBy,jdbcType=VARCHAR},
+            updateTime = #{updateTime,jdbcType=TIMESTAMP}
+        WHERE id =  #{id,jdbcType=VARCHAR};
+    </update>
+
+</mapper>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>用户添加</title>
+
+	<!-- Import google fonts - Heading first/ text second -->
+	<!--<link rel='stylesheet' type='text/css' href='http://fonts.useso.com/css?family=Open+Sans:400,700|Droid+Sans:400,700' />
+	--><!--[if lt IE 9]>
+	<link href="http://fonts.useso.com/css?family=Open+Sans:400" rel="stylesheet" type="text/css" />
+	<link href="http://fonts.useso.com/css?family=Open+Sans:700" rel="stylesheet" type="text/css" />
+	<link href="http://fonts.useso.com/css?family=Droid+Sans:400" rel="stylesheet" type="text/css" />
+	<link href="http://fonts.useso.com/css?family=Droid+Sans:700" rel="stylesheet" type="text/css" />
+	<![endif]-->
+
+	<!-- Favicon and touch icons -->
+	<link rel="shortcut icon" href="/resources/assets/ico/favicon.ico" type="image/x-icon" />
+
+
+
+	<!-- Css files -->
+	<link href="/resources/assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/resources/assets/css/jquery.mmenu.css" rel="stylesheet">
+	<link href="/resources/assets/css/font-awesome.min.css" rel="stylesheet">
+
+
+	<link href="/resources/assets/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+	<link href="/resources/assets/css/style.min.css" rel="stylesheet">
+	<link href="/resources/assets/css/add-ons.min.css" rel="stylesheet">
+
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+<div class="container-fluid content">
+
+	<div class="row">
+		<!-- start: Content -->
+		<div class="main ">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header"><i class="fa fa-indent"></i>用户管理</h3>
+					<ol class="breadcrumb">
+						<li><i class="fa fa-home"></i><a href="../index.html">Home</a></li>
+						<li><i class="fa fa-list-alt"></i><a href="#">用户</a></li>
+						<li><i class="fa fa-indent"></i>用户添加</li>
+					</ol>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2><i class="fa fa-indent red"></i><strong>用户添加</strong></h2>
+						</div>
+						<div class="panel-body">
+							<form action="/user/user-insert" method="post" enctype="multipart/form-data" class="form-horizontal ">
+								<div class="form-group">
+									<label class="col-md-1 control-label" for="username">用户名</label>
+									<div class="col-md-9">
+										<input type="text" id="username" name="username" required="required" class="form-control" placeholder="用户名">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-1 control-label" for="password">密码</label>
+									<div class="col-md-9">
+										<input type="text" id="password" name="password" required="required" class="form-control" placeholder="密码">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-1 control-label" for="email">邮箱</label>
+									<div class="col-md-9">
+										<input type="text" id="email" name="email" required="required" class="form-control" placeholder="邮箱">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-1 col-md-1 col-sm-1 control-label">address</label>
+									<div class="col-lg-10 col-md-9">
+										<div class="row">
+											<div class="col-lg-2 col-md-2">
+												<input name="address.country" type="text" required="required" class="form-control" placeholder="国家">
+											</div>
+											<div class="col-lg-2 col-md-2">
+												<input name="address.province" type="text" required="required" class="form-control" placeholder="省份">
+											</div>
+											<div class="col-lg-2 col-md-2">
+												<input name="address.city" type="text" required="required" class="form-control" placeholder="城市">
+											</div>
+											<div class="col-lg-2 col-md-2">
+												<input name="address.street" type="text" required="required" class="form-control" placeholder="街道">
+											</div>
+											<div class="col-lg-2 col-md-2">
+												<input name="address.postCode" type="text" required="required" class="form-control" placeholder="邮编">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-1 control-label" for="desc">自我描述</label>
+									<div class="controls">
+										<textarea id="desc" name="desc" class="form-control" rows="6" style="width:80%"></textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-1 control-label" for="introduce">简介</label>
+									<div class="controls">
+										<textarea id="introduce" name="introduce" class="form-control" rows="6" style="width:80%"></textarea>
+									</div>
+								</div>
+
+								<br>
+								<div class="panel-footer">
+									<button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i> Submit</button>
+									<button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div><!--/container-->
+
+	<div class="clearfix"></div>
+</div>
+</body>
+
+	<!-- start: JavaScript-->
+	<!--[if !IE]>-->
+	<script src="/resources/assets/js/jquery-2.1.1.min.js"></script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+	
+		<script src="/resources/assets/js/jquery-1.11.1.min.js"></script>
+	
+	<![endif]-->
+
+	<!--[if !IE]>-->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='/resources/assets/js/jquery-2.1.1.min.js'>"+"<"+"/script>");
+		</script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+	
+		<script type="text/javascript">
+	 	window.jQuery || document.write("<script src='/resources/assets/js/jquery-1.11.1.min.js'>"+"<"+"/script>");
+		</script>
+		
+	<![endif]-->
+	<script src="/resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="/resources/assets/js/bootstrap.min.js"></script>
+
+
+	<!-- page scripts -->
+	<script src="/resources/assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js"></script>
+	<script src="/resources/assets/plugins/chosen/js/chosen.jquery.min.js"></script>
+	<script src="/resources/assets/plugins/autosize/jquery.autosize.min.js"></script>
+	<script src="/resources/assets/plugins/placeholder/jquery.placeholder.min.js"></script>
+	<script src="/resources/assets/plugins/maskedinput/jquery.maskedinput.min.js"></script>
+	<script src="/resources/assets/plugins/moment/moment.min.js"></script>
+
+	<!-- theme scripts -->
+	<script src="/resources/assets/js/SmoothScroll.js"></script>
+	<script src="/resources/assets/js/jquery.mmenu.min.js"></script>
+	<script src="/resources/assets/js/core.min.js"></script>
+	
+	<!-- inline scripts related to this page -->
+
+	<!-- end: JavaScript-->
+
+</html>

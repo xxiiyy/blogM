@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页</title>
+
+    <!-- Import google fonts - Heading first/ text second -->
+    <!--    <link rel='stylesheet' type='text/css'
+              href='http://fonts.useso.com/css?family=Open+Sans:400,700|Droid+Sans:400,700'/>-->
+    <!--[if lt IE 9]>
+    <link href="http://fonts.useso.com/css?family=Open+Sans:400" rel="stylesheet" type="text/css"/>
+    <link href="http://fonts.useso.com/css?family=Open+Sans:700" rel="stylesheet" type="text/css"/>
+    <link href="http://fonts.useso.com/css?family=Droid+Sans:400" rel="stylesheet" type="text/css"/>
+    <link href="http://fonts.useso.com/css?family=Droid+Sans:700" rel="stylesheet" type="text/css"/>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="resources/assets/ico/favicon.ico" type="image/x-icon"/>
+
+    <!-- Css files -->
+    <link href="resources/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/assets/css/jquery.mmenu.css" rel="stylesheet">
+    <link href="resources/assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="resources/assets/css/climacons-font.css" rel="stylesheet">
+    <link href="resources/assets/plugins/xcharts/css/xcharts.min.css" rel=" stylesheet">
+    <link href="resources/assets/plugins/fullcalendar/css/fullcalendar.css" rel="stylesheet">
+    <link href="resources/assets/plugins/morris/css/morris.css" rel="stylesheet">
+    <link href="resources/assets/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+    <link href="resources/assets/plugins/jvectormap/css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+    <link href="resources/assets/css/style.min.css" rel="stylesheet">
+    <link href="resources/assets/css/add-ons.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+</head>
+
+<body>
+<!-- start: Header -->
+<#include "head.html">
+<!-- end: Header -->
+
+<div class="container-fluid content" >
+    <div class="row">
+        <!-- start: Main Menu -->
+        <#include "menu.html">
+        <!-- end: Main Menu -->
+
+        <!-- start: Content -->
+        <div class="right-iframe">
+            <iframe src="user/user-list" frameborder="0" name="mainFrame" scrolling="no" style="overflow: hidden"
+                    marginheight="0" marginwidth="0" id="iframepage"
+                    onLoad="iFrameHeight()" width="100%" height="80%">
+            </iframe>
+            <script type="text/javascript" language="javascript">
+                function iFrameHeight(){
+                    var ifm= document.getElementById('iframepage');
+                    var subWeb = document.frames ? document.frames['iframepage'].document : ifm.contentDocument;
+                    if(ifm != null && subWeb != null) {
+                        ifm.height = subWeb.body.scrollHeight;
+                        ifm.width = subWeb.body.scrollWidth;
+                    }
+                }
+            </script>
+        </div>
+
+    </div><!--/container-->
+
+    <div class="clearfix"></div>
+</div>
+
+<!-- start: JavaScript-->
+<!--[if !IE]>-->
+
+<script src="resources/assets/js/jquery-2.1.1.min.js"></script>
+<!--<![endif]-->
+
+<!--[if IE]>
+
+<script src="resources/assets/js/jquery-1.11.1.min.js"></script>
+
+<![endif]-->
+
+<!--[if !IE]>-->
+
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='resources/assets/js/jquery-2.1.1.min.js'>" + "<" + "/script>");
+</script>
+
+<!--<![endif]-->
+
+<!--[if IE]>
+
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='resources/assets/js/jquery-1.11.1.min.js'>" + "<" + "/script>");
+</script>
+
+<![endif]-->
+<script src="resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="resources/assets/js/bootstrap.min.js"></script>
+
+
+<!-- page scripts -->
+<script src="resources/assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js"></script>
+<script src="resources/assets/plugins/touchpunch/jquery.ui.touch-punch.min.js"></script>
+<script src="resources/assets/plugins/moment/moment.min.js"></script>
+<script src="resources/assets/plugins/fullcalendar/js/fullcalendar.min.js"></script>
+<!--[if lte IE 8]>
+<script language="javascript" type="text/javascript" src="resources/assets/plugins/excanvas/excanvas.min.js"></script>
+<![endif]-->
+<script src="resources/assets/plugins/flot/jquery.flot.min.js"></script>
+<script src="resources/assets/plugins/flot/jquery.flot.pie.min.js"></script>
+<script src="resources/assets/plugins/flot/jquery.flot.stack.min.js"></script>
+<script src="resources/assets/plugins/flot/jquery.flot.resize.min.js"></script>
+<script src="resources/assets/plugins/flot/jquery.flot.time.min.js"></script>
+<script src="resources/assets/plugins/flot/jquery.flot.spline.min.js"></script>
+<script src="resources/assets/plugins/xcharts/js/xcharts.min.js"></script>
+<script src="resources/assets/plugins/autosize/jquery.autosize.min.js"></script>
+<script src="resources/assets/plugins/placeholder/jquery.placeholder.min.js"></script>
+<script src="resources/assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="resources/assets/plugins/datatables/js/dataTables.bootstrap.min.js"></script>
+<script src="resources/assets/plugins/raphael/raphael.min.js"></script>
+<script src="resources/assets/plugins/morris/js/morris.min.js"></script>
+<script src="resources/assets/plugins/jvectormap/js/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="resources/assets/plugins/jvectormap/js/jquery-jvectormap-world-mill-en.js"></script>
+<script src="resources/assets/plugins/jvectormap/js/gdp-data.js"></script>
+<script src="resources/assets/plugins/gauge/gauge.min.js"></script>
+
+
+<!-- theme scripts -->
+<script src="resources/assets/js/SmoothScroll.js"></script>
+<script src="resources/assets/js/jquery.mmenu.min.js"></script>
+<script src="resources/assets/js/core.min.js"></script>
+<script src="resources/assets/plugins/d3/d3.min.js"></script>
+
+<!-- inline scripts related to this page -->
+<script src="resources/assets/js/pages/index.js"></script>
+
+<!-- end: JavaScript-->
+</body>
+</html>

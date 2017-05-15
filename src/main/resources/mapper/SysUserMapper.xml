@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhd.mapper.SysUserMapper">
+
+    <!-- 映射 -->
+    <resultMap id="BaseUserMapper" type="com.lhd.entity.SysUser">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="description" column="description"/>
+        <result property="email" column="email"/>
+        <result property="icon" column="icon"/>
+        <result typeHandler="com.lhd.entity.handler.AddressHandler" property="address" column="address"/>
+        <result property="introduce" column="introduce"/>
+        <result property="updateTime" column="updateTime"/>
+        <result property="createTime" column="createTime"/>
+        <result property="updateBy" column="updateBy"/>
+        <result property="createBy" column="createBy"/>
+        <result property="salt" column="salt"/>
+    </resultMap>
+
+    <sql id="BaseSql">
+
+    </sql>
+
+    <select id="selectUserByUsername" resultMap="BaseUserMapper" parameterType="java.lang.String">
+        SELECT u.*
+        FROM sys_user u
+        WHERE username = #{username}
+    </select>
+
+    <select id="selectAllUser" resultMap="BaseUserMapper">
+        SELECT u.id,u.username,u.email,u.address
+        FROM sys_user u
+    </select>
+
+    <insert id="insertUser" parameterType="com.lhd.entity.SysUser">
+        INSERT INTO
+        sys_user(id,username,password,description,email,icon,address,
+                introduce,updateTime,createTime,updateBy,createBy,salt)
+        VALUES (#{id,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR},
+              #{password,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR},
+              #{email,jdbcType=VARCHAR},#{icon,jdbcType=VARCHAR},
+              #{address,typeHandler=com.lhd.entity.handler.AddressHandler},
+              #{introduce,jdbcType=VARCHAR},#{updateTime,jdbcType=TIMESTAMP},
+              #{createTime,jdbcType=TIMESTAMP},#{updateBy,jdbcType=VARCHAR},
+              #{createBy,jdbcType=VARCHAR},#{salt,jdbcType=VARCHAR});
+    </insert>
+
+    <update id="updateUser" parameterType="com.lhd.entity.SysUser">
+        UPDATE sys_user
+        SET password=#{password,jdbcType=VARCHAR},description=#{description,jdbcType=VARCHAR},
+            email=#{email,jdbcType=VARCHAR},
+            address=#{address,typeHandler=com.lhd.entity.handler.AddressHandler},
+            introduce=#{introduce,jdbcType=VARCHAR},updateTime=#{updateTime,jdbcType=TIMESTAMP},
+            updateBy=#{updateBy,jdbcType=VARCHAR}
+        WHERE username=#{username,jdbcType=VARCHAR}
+    </update>
+
+</mapper>
