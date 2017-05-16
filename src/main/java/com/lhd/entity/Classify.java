@@ -1,15 +1,18 @@
 package com.lhd.entity;
 
+import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
+
+import java.io.Serializable;
 
 /**
  * Created by lhd on 2017/5/14.
  * 标签信息
  */
 @TableName("sys_classify")
-public class Classify {
+public class Classify extends  Model<SysMenu>{
 
     /**
      * 标签id
@@ -44,5 +47,9 @@ public class Classify {
                 "id='" + id + '\'' +
                 ", classify='" + classify + '\'' +
                 '}';
+    }
+
+    protected Serializable pkVal() {
+        return id;
     }
 }

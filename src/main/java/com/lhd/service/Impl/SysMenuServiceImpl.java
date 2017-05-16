@@ -1,6 +1,7 @@
 package com.lhd.service.Impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.lhd.dto.SysMenuDto;
 import com.lhd.entity.SysMenu;
 import com.lhd.entity.SysRoleMenu;
 import com.lhd.mapper.SysMenuMapper;
@@ -21,8 +22,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper,SysMenu> imple
     @Autowired
     private SysMenuMapper sysMenuMapper;
 
-    public List<String> selectRoleIdByUserId(String roleId) {
-        return sysMenuMapper.selectRoleIdByUserId(roleId);
+    public List<String> selectMenuIdByRoleId(String roleId) {
+        return sysMenuMapper.selectMenuIdByRoleId(roleId);
     }
 
     public SysMenu selectMenuByMenuId(String menuId) {
@@ -31,5 +32,13 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper,SysMenu> imple
 
     public int insertRoleMenu(SysRoleMenu roleMenu) {
         return sysMenuMapper.insertRoleMenu(roleMenu);
+    }
+
+    public List<SysMenuDto> selectAllMenuDto() {
+        return sysMenuMapper.selectAllMenuDto();
+    }
+
+    public int deleteMenuByRoleId(String roleId) {
+        return sysMenuMapper.deleteMenuByRoleId(roleId);
     }
 }

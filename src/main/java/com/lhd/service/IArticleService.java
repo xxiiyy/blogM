@@ -1,6 +1,5 @@
 package com.lhd.service;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.service.IService;
 import com.lhd.dto.ArticleDto;
 import com.lhd.entity.Article;

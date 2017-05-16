@@ -2,7 +2,8 @@ package com.lhd.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.lhd.entity.SysRole;
-import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * Created by lhd on 2017/5/4.
@@ -10,11 +11,20 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface SysRoleMapper extends BaseMapper<SysRole> {
 
+
     /**
-     * 通过userid获取对应roleid
-     * @param roleId
+     * 查询可用的role
      * @return
      */
-    String selectRoleIdByUserId(@Param("userId") String userId);
+    List<SysRole> selectAllRole();
+
+    /**
+     * 更新数据
+     * @param role
+     * @return
+     */
+    int updateRoleById(SysRole role);
+
+
 
 }

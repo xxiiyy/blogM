@@ -22,6 +22,11 @@ public class SysUser extends Model<SysUser> {
     private String id;
 
     /**
+     * 角色id
+     */
+    private String roleId;
+
+    /**
      * 用户名
      */
     private String username;
@@ -207,5 +212,13 @@ public class SysUser extends Model<SysUser> {
                 ", updateBy='" + updateBy + '\'' +
                 ", salt='" + salt + '\'' +
                 '}';
+    }
+
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 }

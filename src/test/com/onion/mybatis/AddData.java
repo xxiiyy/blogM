@@ -65,8 +65,7 @@ public class AddData {
 //        sysRoleMenuService.insert(sysRoleMenu);
         String username = "admin";
         SysUser user = sysUserService.selectUserByUsername(username);
-        String roleId = sysRoleService.selectRoleIdByUserId(user.getId());
-        List<String> menuIds = sysMenuService.selectRoleIdByUserId(roleId);
+        List<String> menuIds = sysMenuService.selectMenuIdByRoleId(user.getRoleId());
         List<SysMenu> menus = new ArrayList<SysMenu>();
         for (String menuId : menuIds){
             SysMenu sysMenu = sysMenuService.selectMenuByMenuId(menuId);

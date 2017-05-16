@@ -2,6 +2,7 @@ package com.lhd.service.Impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.lhd.entity.SysUser;
+import com.lhd.mapper.SysRoleMapper;
 import com.lhd.mapper.SysUserMapper;
 import com.lhd.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Autowired
     private SysUserMapper sysUserMapper;
 
+    @Autowired
+    private SysRoleMapper sysRoleMapper;
+
     public SysUser selectUserByUsername(String username) {
         return sysUserMapper.selectUserByUsername(username);
     }
@@ -34,4 +38,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public int updateUser(SysUser user) {
         return sysUserMapper.updateUser(user);
     }
+
+
 }

@@ -10,7 +10,7 @@
     </resultMap>
 
     <!-- 查询roleId，通过userId -->
-    <select id="selectRoleIdByUserId" resultType="java.lang.String" parameterType="java.lang.String">
+    <select id="selectMenuIdByRoleId" resultType="java.lang.String" parameterType="java.lang.String">
         SELECT rm.menuId
         FROM sys_role_menu rm
         WHERE rm.roleId = #{roleId}
@@ -28,5 +28,19 @@
         INSERT INTO sys_role_menu(id,roleId,menuId)
         VALUES(#{roleMenu.id},#{roleMenu.roleId},#{roleMenu.menuId});
     </insert>
+
+    <!-- 获取ztree使用的menu -->
+    <select id="selectAllMenuDto" resultType="com.lhd.dto.SysMenuDto">
+        SELECT id,pId,menuName name
+        FROM sys_menu
+        WHERE useable = 1;
+    </select>
+
+    <!-- 根据角色删除所有的menu -->
+    <delete id="deleteMenuByRoleId" parameterType="java.lang.String">
+        DELETE
+        FROM sys_role_menu
+        WHERE roleId=#{roleId}
+    </delete>
 
 </mapper>

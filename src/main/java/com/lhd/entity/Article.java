@@ -1,10 +1,12 @@
 package com.lhd.entity;
 
+import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,7 +14,7 @@ import java.util.Date;
  * 博客文章
  */
 @TableName("sys_blog")
-public class Article {
+public class Article extends Model<SysMenu> {
 
     /**
      * 文章id，唯一标识
@@ -201,5 +203,9 @@ public class Article {
                 ", updateBy='" + updateBy + '\'' +
                 ", createBy='" + createBy + '\'' +
                 '}';
+    }
+
+    protected Serializable pkVal() {
+        return id;
     }
 }

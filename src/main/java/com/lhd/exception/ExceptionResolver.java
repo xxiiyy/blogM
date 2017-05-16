@@ -5,6 +5,7 @@ package com.lhd.exception;
  */
 
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,17 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by zhongmc on 2017/5/4.
- * @author lhd
+ * Created by lhd on 2017/5/4.
+ * 全局异常处理器
  */
-
 public class ExceptionResolver implements HandlerExceptionResolver {
 
     public ModelAndView resolveException(HttpServletRequest request
             , HttpServletResponse response, Object o, Exception e) {
         String message = null;
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("/WEB-INF/views/error/page-404.html");
+        mav.setViewName("/page-404.html");
         /*if(e instanceof UserException){
             message = ((UserException)e).getMessage();
             mav.setViewName("/error.jsp");

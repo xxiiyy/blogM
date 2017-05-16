@@ -17,6 +17,7 @@
         <result property="updateBy" column="updateBy"/>
         <result property="createBy" column="createBy"/>
         <result property="salt" column="salt"/>
+        <result property="roleId" column="roleId"/>
     </resultMap>
 
     <sql id="BaseSql">
@@ -37,20 +38,20 @@
     <insert id="insertUser" parameterType="com.lhd.entity.SysUser">
         INSERT INTO
         sys_user(id,username,password,description,email,icon,address,
-                introduce,updateTime,createTime,updateBy,createBy,salt)
+                introduce,updateTime,createTime,updateBy,createBy,salt,roleId)
         VALUES (#{id,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR},
               #{password,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR},
               #{email,jdbcType=VARCHAR},#{icon,jdbcType=VARCHAR},
               #{address,typeHandler=com.lhd.entity.handler.AddressHandler},
               #{introduce,jdbcType=VARCHAR},#{updateTime,jdbcType=TIMESTAMP},
               #{createTime,jdbcType=TIMESTAMP},#{updateBy,jdbcType=VARCHAR},
-              #{createBy,jdbcType=VARCHAR},#{salt,jdbcType=VARCHAR});
+              #{createBy,jdbcType=VARCHAR},#{salt,jdbcType=VARCHAR},#{roleId,jdbcType=VARCHAR});
     </insert>
 
     <update id="updateUser" parameterType="com.lhd.entity.SysUser">
         UPDATE sys_user
         SET password=#{password,jdbcType=VARCHAR},description=#{description,jdbcType=VARCHAR},
-            email=#{email,jdbcType=VARCHAR},
+            email=#{email,jdbcType=VARCHAR},roleId=#{roleId,jdbcType=VARCHAR},
             address=#{address,typeHandler=com.lhd.entity.handler.AddressHandler},
             introduce=#{introduce,jdbcType=VARCHAR},updateTime=#{updateTime,jdbcType=TIMESTAMP},
             updateBy=#{updateBy,jdbcType=VARCHAR}

@@ -1,6 +1,7 @@
 package com.lhd.service;
 
 import com.baomidou.mybatisplus.service.IService;
+import com.lhd.dto.SysMenuDto;
 import com.lhd.entity.SysMenu;
 import com.lhd.entity.SysRoleMenu;
 import org.apache.ibatis.annotations.Param;
@@ -19,7 +20,7 @@ public interface ISysMenuService extends IService<SysMenu> {
      * @param roleId
      * @return
      */
-    List<String> selectRoleIdByUserId(String roleId);
+    List<String> selectMenuIdByRoleId(String roleId);
 
     /**
      * 通过menuid获取对应menu
@@ -30,5 +31,18 @@ public interface ISysMenuService extends IService<SysMenu> {
 
 
     int insertRoleMenu(SysRoleMenu roleMenu);
+
+    /**
+     * 获取ztree使用的dto
+     * @return
+     */
+    List<SysMenuDto> selectAllMenuDto();
+
+    /**
+     * 删除menu
+     * @param roleId
+     * @return
+     */
+    int deleteMenuByRoleId(@Param("roleId") String roleId);
 
 }

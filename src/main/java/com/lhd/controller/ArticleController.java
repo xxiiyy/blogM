@@ -100,6 +100,7 @@ public class ArticleController {
     public String articleDetail(Model model,@PathVariable("articleId") String articleId){
         Article article = articleService.selectById(articleId);
         List<Classify> classifies = classifyService.selectList(new EntityWrapper<Classify>());
+        article.setContent(article.getContent().trim());
         model.addAttribute("classifies",classifies);
         model.addAttribute("article",article);
         return "article/articleDetail";

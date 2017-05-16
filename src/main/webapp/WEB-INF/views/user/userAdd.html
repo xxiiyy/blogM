@@ -84,6 +84,16 @@
 									</div>
 								</div>
 								<div class="form-group">
+									<label class="col-md-1 control-label" for="roleId">用户角色</label>
+									<div class="col-md-9">
+										<select id="roleId" name="roleId" class="form-control" size="1">
+											<#list roles as role>
+												<option value="${role.id}">${role.roleName}</option>
+											</#list>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
 									<label class="col-lg-1 col-md-1 col-sm-1 control-label">address</label>
 									<div class="col-lg-10 col-md-9">
 										<div class="row">
@@ -106,9 +116,9 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-md-1 control-label" for="desc">自我描述</label>
+									<label class="col-md-1 control-label" for="description">自我描述</label>
 									<div class="controls">
-										<textarea id="desc" name="desc" class="form-control" rows="6" style="width:80%"></textarea>
+										<textarea id="description" name="description" class="form-control" rows="6" style="width:80%"></textarea>
 									</div>
 								</div>
 								<div class="form-group">

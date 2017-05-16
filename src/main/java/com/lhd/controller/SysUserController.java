@@ -1,13 +1,12 @@
 package com.lhd.controller;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.lhd.dto.Message;
+import com.lhd.entity.SysRole;
 import com.lhd.entity.SysUser;
+import com.lhd.service.Impl.SysRoleServiceImpl;
 import com.lhd.service.Impl.SysUserServiceImpl;
 import com.lhd.utils.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 
@@ -29,10 +25,12 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/user")
 public class SysUserController {
-    Logger logger = LoggerFactory.getLogger(SysUserController.class);
 
     @Autowired
     private SysUserServiceImpl sysUserService;
+
+    @Autowired
+    private SysRoleServiceImpl sysRoleService;
 
     @RequestMapping(value = "/user-list",method = RequestMethod.GET)
     public String userList(Model model){
@@ -50,19 +48,24 @@ public class SysUserController {
         user.setUpdateBy("admin");
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());
+        user.setIcon("");
         sysUserService.insertUser(user);
         return "redirect:/user/user-list";
     }
 
 
     @RequestMapping(value = "/user-add")
-    public String userAdd(){
+    public String userAdd(Model model){
+        List<SysRole> roles = sysRoleService.selectAllRole();
+        model.addAttribute("roles",roles);
         return "user/userAdd";
     }
 
     @RequestMapping(value = "/user-detail/{username}")
     public String userDetail(Model model,@PathVariable("username") String username) {
         SysUser user = sysUserService.selectUserByUsername(username);
+        List<SysRole> roles = sysRoleService.selectAllRole();
+        model.addAttribute("roles",roles);
         model.addAttribute("user",user);
         return "user/userDetail";
     }
