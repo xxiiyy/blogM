@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50550
 File Encoding         : 65001
 
-Date: 2017-05-15 16:50:44
+Date: 2017-05-16 18:01:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,10 +25,10 @@ CREATE TABLE `sys_blog` (
   `content` varchar(2000) NOT NULL COMMENT '文章内容',
   `subtitle` varchar(50) NOT NULL COMMENT '文章子标题',
   `author` varchar(20) NOT NULL COMMENT '作者',
-  `tag` varchar(20) DEFAULT NULL COMMENT '标签',
+  `tag` varchar(20) NOT NULL COMMENT '标签',
   `classifyId` varchar(32) NOT NULL COMMENT '分类',
   `click` int(11) NOT NULL COMMENT '点击量',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `updateTime` datetime NOT NULL COMMENT '更新时间',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   `updateBy` varchar(255) DEFAULT NULL COMMENT '更新者',
   `createBy` varchar(255) DEFAULT NULL COMMENT '创建者',
@@ -86,10 +86,12 @@ CREATE TABLE `sys_menu` (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
+INSERT INTO `sys_menu` VALUES ('4278fff33c3741178545e91a7b8d07bc', 'fd433354452b4d10b8e4eb6544dc59dd', '用户添加', '/user/user-add', 'fa fa-user', null, '1', '2017-05-15 18:20:10', '2017-05-15 18:20:10', 'admin', 'admin');
+INSERT INTO `sys_menu` VALUES ('650626ffb10e451bbb02d717697905ef', 'fd433354452b4d10b8e4eb6544dc59dd', '用户列表', '/user/user-list', 'fa fa-user', null, '1', '2017-05-15 17:09:04', '2017-05-15 17:09:04', 'admin', 'admin');
 INSERT INTO `sys_menu` VALUES ('76e89fc3178744ac84f6dc5b70afa5f8', '0', '分组管理', '/classify/classify-list', 'fa fa-sort', null, '1', '2017-05-14 22:21:44', '2017-05-14 22:21:44', 'admin', 'admin');
 INSERT INTO `sys_menu` VALUES ('920e18c2c6e8465a89333b66c495d14f', 'fc65bb5abe5748c5a473db87760f231d', '文章列表', '/article/article-list', 'fa fa-th-list', null, '1', '2017-05-13 18:38:44', '2017-05-13 18:38:44', 'admin', 'admin');
 INSERT INTO `sys_menu` VALUES ('c5dd65ea4c9042e6bc34fb5babff4d9a', 'fc65bb5abe5748c5a473db87760f231d', '文章添加', '/article/article-add', 'fa fa-indent', null, '1', '2017-05-13 18:38:57', '2017-05-13 18:38:57', 'admin', 'admin');
-INSERT INTO `sys_menu` VALUES ('d5f9cd9626c74de88237d0ec5ac39c67', '0', '权限管理', '/welcome', 'fa fa-plus-square-o', null, '1', '2017-05-13 17:43:14', '2017-05-13 17:43:14', 'admin', 'admin');
+INSERT INTO `sys_menu` VALUES ('d5f9cd9626c74de88237d0ec5ac39c67', '0', '权限管理', '/role/role-list', 'fa fa-plus-square-o', null, '1', '2017-05-13 17:43:14', '2017-05-13 17:43:14', 'admin', 'admin');
 INSERT INTO `sys_menu` VALUES ('fc65bb5abe5748c5a473db87760f231d', '0', '文章管理', '#', 'fa fa-file', null, '1', '2017-05-13 17:44:37', '2017-05-13 17:44:37', 'admin', 'admin');
 INSERT INTO `sys_menu` VALUES ('fd433354452b4d10b8e4eb6544dc59dd', '0', '用户管理', '#', 'fa fa-user', null, '1', '2017-05-13 17:42:51', '2017-05-13 17:42:51', 'admin', 'admin');
 
@@ -113,6 +115,8 @@ CREATE TABLE `sys_role` (
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('4c3e861acaba449fa0103a7bad3c4ebw', '系统管理员', 'admin', '1', '2017-05-09 13:09:36', '2017-05-09 13:09:40', 'admin', 'admin');
+INSERT INTO `sys_role` VALUES ('4d993aa0dba746beb357b030a9fc016b', '32', '32', '1', '2017-05-16 09:39:06', '2017-05-16 09:39:06', 'admin', 'admin');
+INSERT INTO `sys_role` VALUES ('fbac9e745f514eedba531a64a39a0fe7', '12', '12', '0', '2017-05-15 22:26:41', '2017-05-15 22:26:41', 'admin', 'admin');
 
 -- ----------------------------
 -- Table structure for sys_role_menu
@@ -130,10 +134,14 @@ CREATE TABLE `sys_role_menu` (
 -- ----------------------------
 INSERT INTO `sys_role_menu` VALUES ('15858d25dec849008893546beba77842', '4c3e861acaba449fa0103a7bad3c4ebw', 'fd433354452b4d10b8e4eb6544dc59dd');
 INSERT INTO `sys_role_menu` VALUES ('22b6a2fccbac42efb2e9ad9326b03fb2', '4c3e861acaba449fa0103a7bad3c4ebw', 'd5f9cd9626c74de88237d0ec5ac39c67');
+INSERT INTO `sys_role_menu` VALUES ('4816938fa7db4ae79902c7c36e60a9ec', '4c3e861acaba449fa0103a7bad3c4ebw', '650626ffb10e451bbb02d717697905ef');
+INSERT INTO `sys_role_menu` VALUES ('558f461db4824dfcbe83432f3100f675', 'fbac9e745f514eedba531a64a39a0fe7', 'd5f9cd9626c74de88237d0ec5ac39c67');
 INSERT INTO `sys_role_menu` VALUES ('622e9bc2a7564825b5cf1aafd274140f', '4c3e861acaba449fa0103a7bad3c4ebw', 'fc65bb5abe5748c5a473db87760f231d');
+INSERT INTO `sys_role_menu` VALUES ('7d0cf9e31ee24378b07eb2cc605780a5', 'fbac9e745f514eedba531a64a39a0fe7', '76e89fc3178744ac84f6dc5b70afa5f8');
 INSERT INTO `sys_role_menu` VALUES ('968b574a5ead43939e670571e92ec3bb', '4c3e861acaba449fa0103a7bad3c4ebw', '920e18c2c6e8465a89333b66c495d14f');
 INSERT INTO `sys_role_menu` VALUES ('b3203054c6d34311927550378f0b9712', '4c3e861acaba449fa0103a7bad3c4ebw', '76e89fc3178744ac84f6dc5b70afa5f8');
 INSERT INTO `sys_role_menu` VALUES ('be7a4655276c47bdb553b8c883b9bcb2', '4c3e861acaba449fa0103a7bad3c4ebw', 'c5dd65ea4c9042e6bc34fb5babff4d9a');
+INSERT INTO `sys_role_menu` VALUES ('f6b81474c04b4670b4bb788bc6b0ab4d', '4c3e861acaba449fa0103a7bad3c4ebw', '4278fff33c3741178545e91a7b8d07bc');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -143,35 +151,23 @@ CREATE TABLE `sys_user` (
   `id` varchar(32) NOT NULL COMMENT '系统用户主键',
   `username` varchar(20) NOT NULL COMMENT '用户名',
   `password` varchar(20) NOT NULL COMMENT '登录密码',
-  `desc` varchar(200) DEFAULT NULL COMMENT '用户描述',
-  `email` varchar(100) DEFAULT NULL COMMENT '用户邮箱',
-  `icon` varchar(200) DEFAULT NULL COMMENT '头像',
-  `address` varchar(255) DEFAULT NULL COMMENT '用户地址',
-  `introduce` varchar(500) DEFAULT NULL COMMENT '简介',
+  `description` varchar(200) NOT NULL COMMENT '用户描述',
+  `email` varchar(20) NOT NULL COMMENT '用户邮箱',
+  `icon` varchar(20) NOT NULL COMMENT '头像',
+  `address` varchar(50) NOT NULL COMMENT '用户地址',
+  `introduce` varchar(500) NOT NULL COMMENT '简介',
   `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   `updateBy` varchar(255) DEFAULT NULL COMMENT '更新者',
   `createBy` varchar(255) DEFAULT NULL COMMENT '创建者',
+  `salt` varchar(255) DEFAULT NULL COMMENT '盐',
+  `roleId` varchar(32) DEFAULT NULL COMMENT '角色id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('4c3e861acaba449fa0103a7bad3c4ebq', 'admin', 'admin', '111', '444', '', '11-1-1-1', null, '2017-05-09 13:08:03', '2017-05-09 13:08:07', 'admin', 'admin');
-
--- ----------------------------
--- Table structure for sys_user_role
--- ----------------------------
-DROP TABLE IF EXISTS `sys_user_role`;
-CREATE TABLE `sys_user_role` (
-  `id` varchar(32) NOT NULL COMMENT '用户角色唯一标识',
-  `userId` varchar(32) NOT NULL COMMENT '用户id',
-  `roleId` varchar(32) NOT NULL COMMENT '角色id',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of sys_user_role
--- ----------------------------
-INSERT INTO `sys_user_role` VALUES ('2d1f8a617123457fb40ab9fd81002515', '4c3e861acaba449fa0103a7bad3c4ebq', '4c3e861acaba449fa0103a7bad3c4ebw');
+INSERT INTO `sys_user` VALUES ('31ec9796a4914404a50fb64b4f62edbe', 'lhd', '321', '212', '4133123000@qq.com', '', '中国-江西-赣州-xx路-341000', '413', '2017-05-15 23:41:21', '2017-05-15 19:33:48', 'admin', 'admin', null, '4c3e861acaba449fa0103a7bad3c4ebw');
+INSERT INTO `sys_user` VALUES ('4c3e861acaba449fa0103a7bad3c4ebq', 'admin', 'admin', '111', '444', '', '11-1-1-1-1', '321', '2017-05-15 23:42:25', '2017-05-09 13:08:07', 'admin', 'admin', null, '4c3e861acaba449fa0103a7bad3c4ebw');
+INSERT INTO `sys_user` VALUES ('d25e8644e27642b7a292fa0d3c25b94a', '321', '321', '321', '321', '', '321-321-321-312-321', '312', '2017-05-16 00:11:01', '2017-05-16 00:05:29', 'admin', 'admin', null, '4c3e861acaba449fa0103a7bad3c4ebw');
