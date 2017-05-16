@@ -26,8 +26,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper,Article> imple
         return articleMapper.selectArticleList(paramMap);
     }
 
-    public ArticleDto selectArticle(@Param("articleId") String articleId) {
-        return articleMapper.selectArticle(articleId);
+    public ArticleDto selectArticleDto(String articleId) {
+        return articleMapper.selectArticleDto(articleId);
     }
 
     public int updateArticle(Article article) {

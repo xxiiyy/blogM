@@ -25,7 +25,7 @@ public interface IArticleService extends IService<Article> {
      * 使用id查询
      * @return
      */
-    ArticleDto selectArticle(@Param("articleId") String articleId);
+    ArticleDto selectArticleDto(@Param("articleId") String articleId);
 
     /**
      * 更新文章

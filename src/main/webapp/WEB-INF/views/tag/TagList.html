@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>文章列表</title>
+	<title>分组列表</title>
 
 	<!-- Import google fonts - Heading first/ text second -->
 	<!--<link rel='stylesheet' type='text/css' href='http://fonts.useso.com/css?family=Open+Sans:400,700|Droid+Sans:400,700' />
@@ -41,44 +41,57 @@
 		
 			<div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header"><i class="fa fa-table"></i>文章管理</h3>
+					<h3 class="page-header"><i class="fa fa-table"></i>分类管理</h3>
 					<ol class="breadcrumb">
 						<li><i class="fa fa-home"></i><a href="../index.html">Home</a></li>
-						<li><i class="fa fa-table"></i>文章管理</li>
+						<li><i class="fa fa-table"></i>分类管理</li>
 					</ol>
 				</div>
 			</div>
 
 			<div class="row">
+				<div class="col-lg-6">
+					<div class="panel-body">
+
+						<form action="/tag/tag-add" method="post" enctype="multipart/form-data" class="form-horizontal ">
+							<div class="form-group">
+								<div class="col-md-6">
+									<input type="text" id="tagName" name="tagName"
+										   class="form-control" placeholder="标签">
+								</div>
+								<label style="margin-top: -5px" class="col-md-1 control-label">
+									<button type="submit" class="btn btn-sm btn-success">
+										<i class="fa fa-dot-circle-o"></i> 添加
+									</button>
+								</label>
+							</div>
+
+						</form>
+					</div>
+				</div><!--/col-->
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h2><i class="fa fa-table red"></i><span class="break"></span><strong>文章列表</strong></h2>
+							<h2><i class="fa fa-table red"></i><span class="break"></span><strong>分组列表</strong></h2>
 						</div>
 						<div class="panel-body">
 							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th>标题</th>
-										<th>子标题</th>
-										<th>作者</th>
-										<th>点击量</th>
+										<th>标签名</th>
 										<th>Status</th>
 									</tr>
 								</thead>
 								<tbody>
 									<#list page.records as record>
 										<tr>
-											<td>${record.title}</td>
-											<td>${record.subtitle}</td>
-											<td>${record.author}</td>
-											<td>${record.click}</td>
+											<td>${record.tagName}</td>
 											<td>
-												<a class="article-u" style="text-decoration: none"
-												   href="/article/article-detail/${record.id}">
+												<a data-toggle="modal" data-target="#myModal" data-uid="${record.id}" data-cid="${record.tagName}"
+												   class="tag-u" style="text-decoration: none" href="javascript:void(0);">
 													<span class="label label-warning">修改</span>
 												</a>
-												<a class="article-d" style="text-decoration: none"
+												<a class="tag-d" style="text-decoration: none"
 												   data-did="${record.id}" href="javascript:void(0);">
 													<span class="label label-danger">删除</span>
 												</a>
@@ -87,7 +100,6 @@
 									</#list>
 								</tbody>
 							</table>
-							${page.condition.pagination}
 						</div>
 					</div>
 				</div><!--/col-->
@@ -95,6 +107,35 @@
 		</div>
 		<!-- end: Content -->
 	</div><!--/container-->
+
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">修改标签</h4>
+				</div>
+				<div class="modal-body">
+					<form action="/tag/tag-update" method="post" enctype="multipart/form-data" class="form-horizontal ">
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="tagNameM">标签名</label>
+							<div class="col-md-6">
+								<input type="hidden" id="idM" name="id" class="form-control">
+								<input type="text" id="tagNameM" name="tagName"
+									   class="form-control" placeholder="">
+							</div>
+						</div>
+						<div class="form-group" style="margin-left: 350px">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">修改</button>
+						</div>
+
+					</form>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
 	<div class="clearfix"></div>
 </div>
 
@@ -138,20 +179,47 @@
 	<script src="/resources/assets/js/SmoothScroll.js"></script>
 	<script src="/resources/assets/js/jquery.mmenu.min.js"></script>
 	<script src="/resources/assets/js/core.min.js"></script>
-	
+	<script src="/resources/assets/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		$(function(){
+			// dom加载完毕
+			var $m_btn = $('#modalBtn');
+			var $modal = $('#myModal');
+			$m_btn.on('click', function(){
+				$modal.modal({backdrop: 'static'});
+			});
+			// 测试 bootstrap 居中
+			$modal.on('shown.bs.modal', function(){
+				var $this = $(this);
+				var $modal_dialog = $this.find('.modal-dialog');
+				var m_top = ( $(window).height() - $modal_dialog.height() )/2;
+				$modal_dialog.css({'margin': m_top + 'px auto'});
+			});
+		});
+	</script>
 	<!-- inline scripts related to this page -->
 	<!-- end: JavaScript-->
 	<script type="text/javascript">
-		$(".article-d").click(function () {
+		$('.tag-u').click(function () {
+			var id = $(this).data('uid');
+			var tagName = $(this).data('cid');
+			$('#idM').val(id);
+			$('#tagNameM').val(tagName);
+        });
+	</script>
+
+	<script type="text/javascript">
+		$(".tag-d").click(function () {
 			if(confirm("是否删除？")) {
-				var articleId = $(this).data('did');
+				var id = $(this).data('did');
 				jQuery.ajax({
 					headers : {
 						'Accept' : 'application/json',
 						'Content-Type' : 'application/json'
 					},
 					type : "POST",
-					url : "/article/article-delete/"+articleId,
+					url : "/tag/tag-delete/"+id,
 					success : function(message, tst, jqXHR) {
 						document.location.reload();
 					}

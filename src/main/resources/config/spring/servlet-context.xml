@@ -37,12 +37,12 @@
     </bean>
 
     <!-- 拦截器配置 -->
-    <mvc:interceptors>
+    <!--<mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <bean class="com.lhd.interceptor.MyInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
     
     <!-- 全局异常处理 -->
     <bean class="com.lhd.exception.ExceptionResolver"/>

@@ -45,7 +45,7 @@ public class Article extends Model<SysMenu> {
     /**
      * 文章标签
      */
-    private String tag;
+    private String tagId;
 
     /**
      * 文章分类
@@ -122,12 +122,12 @@ public class Article extends Model<SysMenu> {
         this.author = author;
     }
 
-    public String getTag() {
-        return tag;
+    public String getTagId() {
+        return tagId;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setTagId(String tagId) {
+        this.tagId = tagId;
     }
 
     public String getClassifyId() {
@@ -194,7 +194,7 @@ public class Article extends Model<SysMenu> {
                 ", subtitle='" + subtitle + '\'' +
                 ", content='" + content + '\'' +
                 ", author='" + author + '\'' +
-                ", tag='" + tag + '\'' +
+                ", tagId='" + tagId + '\'' +
                 ", classifyId='" + classifyId + '\'' +
                 ", click=" + click +
                 ", cover='" + cover + '\'' +

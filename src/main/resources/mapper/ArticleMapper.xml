@@ -31,8 +31,8 @@
         limit #{paramMap.startNo},#{paramMap.pageSize};
     </select>
 
-    <select id="selectArticle" parameterType="java.lang.String" resultType="com.lhd.dto.ArticleDto">
-        SELECT b.id,b.title,b.subtitle,b.author,b.tag,c.classify,
+    <select id="selectArticleDto" parameterType="java.lang.String" resultType="com.lhd.dto.ArticleDto">
+        SELECT b.id,b.title,b.subtitle,b.author,b.tagId,b.classifyId,
                 b.click,b.cover,b.content
         FROM sys_classify c,sys_blog b
         <where>

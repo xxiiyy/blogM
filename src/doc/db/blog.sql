@@ -10,10 +10,25 @@ Target Server Type    : MYSQL
 Target Server Version : 50550
 File Encoding         : 65001
 
-Date: 2017-05-16 18:01:37
+Date: 2017-05-17 00:08:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for sys_article_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_article_tag`;
+CREATE TABLE `sys_article_tag` (
+  `id` varchar(32) NOT NULL COMMENT '标签文章id',
+  `tagId` varchar(32) NOT NULL COMMENT '标签id',
+  `articleId` varchar(32) NOT NULL COMMENT '文章id',
+  PRIMARY KEY (`tagId`,`articleId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_article_tag
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_blog
@@ -25,7 +40,7 @@ CREATE TABLE `sys_blog` (
   `content` varchar(2000) NOT NULL COMMENT '文章内容',
   `subtitle` varchar(50) NOT NULL COMMENT '文章子标题',
   `author` varchar(20) NOT NULL COMMENT '作者',
-  `tag` varchar(20) NOT NULL COMMENT '标签',
+  `tagId` varchar(20) NOT NULL COMMENT '标签',
   `classifyId` varchar(32) NOT NULL COMMENT '分类',
   `click` int(11) NOT NULL COMMENT '点击量',
   `updateTime` datetime NOT NULL COMMENT '更新时间',
@@ -39,12 +54,14 @@ CREATE TABLE `sys_blog` (
 -- ----------------------------
 -- Records of sys_blog
 -- ----------------------------
-INSERT INTO `sys_blog` VALUES ('007e11c56dc44bf29ea2757fc838c2d2', '111z1', '                                                                                                                                                123\r\n#asd\r\n1\r\n##1123\r\n![](/resources/upload/u=2402350486,4194130541&fm=21&gp=0.jpg)', 'asd', 'das', 'das', '61a2375dbcb046fbabbxx4bd98033fca', '0', '2017-05-15 12:23:36', '2017-05-15 10:34:50', 'admin', 'admin', null);
+INSERT INTO `sys_blog` VALUES ('007e11c56dc44bf29ea2757fc838c2d2', '111z1', '#asd\r\n1\r\n##1123\r\n![](/resources/upload/u=2402350486,4194130541&fm=21&gp=0.jpg)', 'asd', 'das', 'das', '61a2375dbcb046fbabbxx4bd98033fca', '0', '2017-05-16 18:16:34', '2017-05-15 10:34:50', 'admin', 'admin', null);
 INSERT INTO `sys_blog` VALUES ('2d4ad71bfc0f477c85faf4b0797685d2', '414', '3123', '2345', '425', '524', '61a2375dbcb046fbabbxx4bd98033fca', '0', '2017-05-15 11:09:49', '2017-05-15 11:09:49', 'admin', 'admin', null);
 INSERT INTO `sys_blog` VALUES ('685312b87d9843248ba89d86d098956a', '114', '3123', '114', '114', '114', '61a2375dbcb046fbabb084bd98033f12', '0', '2017-05-15 08:56:18', '2017-05-15 08:56:18', 'admin', 'admin', null);
 INSERT INTO `sys_blog` VALUES ('7347cf864ffe4c029814b7fec635ed39', '111', '111', '111', '111', '111', '161a2375dbcb046fbabb084bd98033f1', '0', '2017-05-15 08:55:50', '2017-05-15 08:55:50', 'admin', 'admin', null);
 INSERT INTO `sys_blog` VALUES ('7c599c2636fd4296a08a759f7da55393', '412', '#fdsf\r\n##fsdf', '431', '413', '413', '61a2375dbcb046fbabb084bd98033f12', '0', '2017-05-15 10:35:04', '2017-05-15 10:35:04', 'admin', 'admin', null);
-INSERT INTO `sys_blog` VALUES ('8344097dd7794bc884e8a62878bca7a8', '116', '616', '116', '116', '116', '61a2375dbcb046fbabb084bd98033f12', '0', '2017-05-15 08:58:09', '2017-05-15 08:58:09', 'admin', 'admin', null);
+INSERT INTO `sys_blog` VALUES ('8344097dd7794bc884e8a62878bca7a8', '116', '#616\r\nfasdfa', '116', '116', '116', '61a2375dbcb046fbabb084bd98033f12', '0', '2017-05-16 18:16:44', '2017-05-15 08:58:09', 'admin', 'admin', null);
+INSERT INTO `sys_blog` VALUES ('9db8c7ca30fa402fa994b8dbc28a6cf5', '312', '#test\r\n###ii\r\nsdlfjalkjdf', '312', '43', '513', '61a2375dbcb046fbabb084bd98033fca', '0', '2017-05-16 18:10:03', '2017-05-16 18:03:54', 'admin', 'admin', null);
+INSERT INTO `sys_blog` VALUES ('bea7c8e1066a48aa982772761c10b298', '3212', '321', '321321', '312', '312', '61a2375dbcb046fbabb084bd98033fca', '0', '2017-05-16 23:13:06', '2017-05-16 23:13:06', 'admin', 'admin', null);
 INSERT INTO `sys_blog` VALUES ('c53e236b258b47aaa3efe7f991ea864b', '115', '1551', '115', '115', '115', '61a2375dbcb046fbabb084bd98033f12', '0', '2017-05-15 08:56:31', '2017-05-15 08:56:31', 'admin', 'admin', null);
 
 -- ----------------------------
@@ -86,6 +103,7 @@ CREATE TABLE `sys_menu` (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
+INSERT INTO `sys_menu` VALUES ('100fce5cabc84687b25368291e410fdc', '0', '标签管理', '/tag/tag-list', 'fa fa-user', null, '1', '2017-05-16 23:24:17', '2017-05-16 23:24:17', 'admin', 'admin');
 INSERT INTO `sys_menu` VALUES ('4278fff33c3741178545e91a7b8d07bc', 'fd433354452b4d10b8e4eb6544dc59dd', '用户添加', '/user/user-add', 'fa fa-user', null, '1', '2017-05-15 18:20:10', '2017-05-15 18:20:10', 'admin', 'admin');
 INSERT INTO `sys_menu` VALUES ('650626ffb10e451bbb02d717697905ef', 'fd433354452b4d10b8e4eb6544dc59dd', '用户列表', '/user/user-list', 'fa fa-user', null, '1', '2017-05-15 17:09:04', '2017-05-15 17:09:04', 'admin', 'admin');
 INSERT INTO `sys_menu` VALUES ('76e89fc3178744ac84f6dc5b70afa5f8', '0', '分组管理', '/classify/classify-list', 'fa fa-sort', null, '1', '2017-05-14 22:21:44', '2017-05-14 22:21:44', 'admin', 'admin');
@@ -126,22 +144,40 @@ CREATE TABLE `sys_role_menu` (
   `id` varchar(32) NOT NULL COMMENT '菜单角色唯一标识',
   `roleId` varchar(32) NOT NULL COMMENT '角色id',
   `menuId` varchar(32) NOT NULL COMMENT '菜单id',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`menuId`,`roleId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `sys_role_menu` VALUES ('15858d25dec849008893546beba77842', '4c3e861acaba449fa0103a7bad3c4ebw', 'fd433354452b4d10b8e4eb6544dc59dd');
-INSERT INTO `sys_role_menu` VALUES ('22b6a2fccbac42efb2e9ad9326b03fb2', '4c3e861acaba449fa0103a7bad3c4ebw', 'd5f9cd9626c74de88237d0ec5ac39c67');
+INSERT INTO `sys_role_menu` VALUES ('b8b5c0d1df69495286c2cbd949e9a7b2', '4c3e861acaba449fa0103a7bad3c4ebw', '100fce5cabc84687b25368291e410fdc');
+INSERT INTO `sys_role_menu` VALUES ('f6b81474c04b4670b4bb788bc6b0ab4d', '4c3e861acaba449fa0103a7bad3c4ebw', '4278fff33c3741178545e91a7b8d07bc');
 INSERT INTO `sys_role_menu` VALUES ('4816938fa7db4ae79902c7c36e60a9ec', '4c3e861acaba449fa0103a7bad3c4ebw', '650626ffb10e451bbb02d717697905ef');
-INSERT INTO `sys_role_menu` VALUES ('558f461db4824dfcbe83432f3100f675', 'fbac9e745f514eedba531a64a39a0fe7', 'd5f9cd9626c74de88237d0ec5ac39c67');
-INSERT INTO `sys_role_menu` VALUES ('622e9bc2a7564825b5cf1aafd274140f', '4c3e861acaba449fa0103a7bad3c4ebw', 'fc65bb5abe5748c5a473db87760f231d');
+INSERT INTO `sys_role_menu` VALUES ('b3203054c6d34311927550378f0b9712', '4c3e861acaba449fa0103a7bad3c4ebw', '76e89fc3178744ac84f6dc5b70afa5f8');
+INSERT INTO `sys_role_menu` VALUES ('6969674194d94814ab07631628148582', '4d993aa0dba746beb357b030a9fc016b', '76e89fc3178744ac84f6dc5b70afa5f8');
 INSERT INTO `sys_role_menu` VALUES ('7d0cf9e31ee24378b07eb2cc605780a5', 'fbac9e745f514eedba531a64a39a0fe7', '76e89fc3178744ac84f6dc5b70afa5f8');
 INSERT INTO `sys_role_menu` VALUES ('968b574a5ead43939e670571e92ec3bb', '4c3e861acaba449fa0103a7bad3c4ebw', '920e18c2c6e8465a89333b66c495d14f');
-INSERT INTO `sys_role_menu` VALUES ('b3203054c6d34311927550378f0b9712', '4c3e861acaba449fa0103a7bad3c4ebw', '76e89fc3178744ac84f6dc5b70afa5f8');
 INSERT INTO `sys_role_menu` VALUES ('be7a4655276c47bdb553b8c883b9bcb2', '4c3e861acaba449fa0103a7bad3c4ebw', 'c5dd65ea4c9042e6bc34fb5babff4d9a');
-INSERT INTO `sys_role_menu` VALUES ('f6b81474c04b4670b4bb788bc6b0ab4d', '4c3e861acaba449fa0103a7bad3c4ebw', '4278fff33c3741178545e91a7b8d07bc');
+INSERT INTO `sys_role_menu` VALUES ('22b6a2fccbac42efb2e9ad9326b03fb2', '4c3e861acaba449fa0103a7bad3c4ebw', 'd5f9cd9626c74de88237d0ec5ac39c67');
+INSERT INTO `sys_role_menu` VALUES ('1c99fdf903cb4db48ef3778789360f59', '4d993aa0dba746beb357b030a9fc016b', 'd5f9cd9626c74de88237d0ec5ac39c67');
+INSERT INTO `sys_role_menu` VALUES ('558f461db4824dfcbe83432f3100f675', 'fbac9e745f514eedba531a64a39a0fe7', 'd5f9cd9626c74de88237d0ec5ac39c67');
+INSERT INTO `sys_role_menu` VALUES ('622e9bc2a7564825b5cf1aafd274140f', '4c3e861acaba449fa0103a7bad3c4ebw', 'fc65bb5abe5748c5a473db87760f231d');
+INSERT INTO `sys_role_menu` VALUES ('15858d25dec849008893546beba77842', '4c3e861acaba449fa0103a7bad3c4ebw', 'fd433354452b4d10b8e4eb6544dc59dd');
+
+-- ----------------------------
+-- Table structure for sys_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_tag`;
+CREATE TABLE `sys_tag` (
+  `id` varchar(32) NOT NULL COMMENT '标签id',
+  `tagName` varchar(20) DEFAULT NULL COMMENT '标签名',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_tag
+-- ----------------------------
+INSERT INTO `sys_tag` VALUES ('2a90f91c67b94e22ad2618f1684908bb', '1231');
 
 -- ----------------------------
 -- Table structure for sys_user

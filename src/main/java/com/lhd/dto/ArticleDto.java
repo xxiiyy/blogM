@@ -36,12 +36,17 @@ public class ArticleDto {
     /**
      * 文章标签
      */
-    private String tag;
+    private String tagId;
 
     /**
-     * 文章分类
+     * 前台显示使用
      */
-    private String classify;
+    private String tagChain;
+
+    /**
+     * 文章分类id
+     */
+    private String classifyId;
 
     /**
      * 文章点击量
@@ -113,20 +118,28 @@ public class ArticleDto {
         this.author = author;
     }
 
-    public String getTag() {
-        return tag;
+    public String getTagId() {
+        return tagId;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setTagId(String tagId) {
+        this.tagId = tagId;
     }
 
-    public String getClassify() {
-        return classify;
+    public String getTagChain() {
+        return tagChain;
     }
 
-    public void setClassify(String classify) {
-        this.classify = classify;
+    public void setTagChain(String tagChain) {
+        this.tagChain = tagChain;
+    }
+
+    public String getClassifyId() {
+        return classifyId;
+    }
+
+    public void setClassifyId(String classifyId) {
+        this.classifyId = classifyId;
     }
 
     public Integer getClick() {
@@ -179,14 +192,15 @@ public class ArticleDto {
 
     @Override
     public String toString() {
-        return "Article{" +
+        return "ArticleDto{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", subtitle='" + subtitle + '\'' +
                 ", content='" + content + '\'' +
                 ", author='" + author + '\'' +
-                ", tag='" + tag + '\'' +
-                ", classify='" + classify + '\'' +
+                ", tagId='" + tagId + '\'' +
+                ", tagChain='" + tagChain + '\'' +
+                ", classifyId='" + classifyId + '\'' +
                 ", click=" + click +
                 ", cover='" + cover + '\'' +
                 ", updateTime=" + updateTime +

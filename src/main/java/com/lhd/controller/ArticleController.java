@@ -98,7 +98,7 @@ public class ArticleController {
 
     @RequestMapping(value = "/article-detail/{articleId}",method = RequestMethod.GET)
     public String articleDetail(Model model,@PathVariable("articleId") String articleId){
-        Article article = articleService.selectById(articleId);
+        ArticleDto article = articleService.selectArticleDto(articleId);
         List<Classify> classifies = classifyService.selectList(new EntityWrapper<Classify>());
         article.setContent(article.getContent().trim());
         model.addAttribute("classifies",classifies);
