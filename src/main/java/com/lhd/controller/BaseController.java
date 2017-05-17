@@ -73,4 +73,9 @@ public class BaseController {
         model.addAttribute("article",articleDto);
         return "test";
     }
+
+    @RequestMapping(value = "icon")
+    public String icon(){
+        return "icon";
+    }
 }

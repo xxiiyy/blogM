@@ -41,4 +41,16 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper,SysMenu> imple
     public int deleteMenuByRoleId(String roleId) {
         return sysMenuMapper.deleteMenuByRoleId(roleId);
     }
+
+    public List<SysMenu> selectAllMenu() {
+        return sysMenuMapper.selectAllMenu();
+    }
+
+    public int updateMenu(SysMenu menu) {
+        return sysMenuMapper.updateMenu(menu);
+    }
+
+    public SysMenu selectMenuById(String id) {
+        return sysMenuMapper.selectMenuById(id);
+    }
 }

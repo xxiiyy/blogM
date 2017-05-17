@@ -46,4 +46,26 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
      * @return
      */
     int deleteMenuByRoleId(@Param("roleId") String roleId);
+
+    /**
+     * 查询所有的菜单
+     * @return
+     */
+    List<SysMenu> selectAllMenu();
+
+    /**
+     * 更新菜单
+     * @param menu
+     * @return
+     */
+    int updateMenu(SysMenu menu);
+
+    /**
+     * 查询单个menu
+     * @param id
+     * @return
+     */
+    SysMenu selectMenuById(@Param("id") String id);
+
+
 }

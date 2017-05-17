@@ -36,11 +36,33 @@
         WHERE useable = 1;
     </select>
 
-    <!-- 根据角色删除所有的menu -->
+    <!-- 删除对应角色所有的menu -->
     <delete id="deleteMenuByRoleId" parameterType="java.lang.String">
         DELETE
         FROM sys_role_menu
         WHERE roleId=#{roleId}
     </delete>
+
+    <!-- 查询所有菜单用户页面显示 -->
+    <select id="selectAllMenu" resultType="com.lhd.entity.SysMenu">
+        SELECT *
+        FROM sys_menu m
+    </select>
+
+    <!-- 查询单个 -->
+    <select id="selectMenuById" resultType="com.lhd.entity.SysMenu" parameterType="java.lang.String">
+        SELECT *
+        FROM sys_menu m
+        WHERE id = #{id}
+    </select>
+
+    <!-- 更新菜单 -->
+    <update id="updateMenu" parameterType="com.lhd.entity.SysMenu">
+        UPDATE sys_menu
+        SET pId=#{pId,jdbcType=VARCHAR},menuName=#{menuName,jdbcType=VARCHAR},
+            useable=#{useable,jdbcType=TINYINT},href=#{href,jdbcType=TINYINT},
+            icon=#{icon,jdbcType=TINYINT}
+        WHERE id=#{id,jdbcType=VARCHAR}
+    </update>
 
 </mapper>
