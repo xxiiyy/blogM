@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>角色列表</title>
+	<title>友链列表</title>
 
 	<!-- Import google fonts - Heading first/ text second -->
 	<!--<link rel='stylesheet' type='text/css' href='http://fonts.useso.com/css?family=Open+Sans:400,700|Droid+Sans:400,700' />
@@ -17,9 +17,6 @@
 
 	<!-- Favicon and touch icons -->
 	<link rel="shortcut icon" href="/resources/assets/ico/favicon.ico" type="image/x-icon" />
-
-	<!-- ztree -->
-	<link rel="stylesheet" href="/resources/ztree/css/metroStyle/metroStyle.css" type="text/css">
 
 	<!-- Css files -->
 	<link href="/resources/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -44,10 +41,10 @@
 		
 			<div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header"><i class="fa fa-table"></i>角色管理</h3>
+					<h3 class="page-header"><i class="fa fa-table"></i>友链管理</h3>
 					<ol class="breadcrumb">
 						<li><i class="fa fa-home"></i><a href="../index.html">Home</a></li>
-						<li><i class="fa fa-table"></i>角色管理</li>
+						<li><i class="fa fa-table"></i>友链管理</li>
 					</ol>
 				</div>
 			</div>
@@ -56,15 +53,19 @@
 				<div class="col-lg-12">
 					<div class="panel-body">
 
-						<form action="/role/role-add" method="post" enctype="multipart/form-data" class="form-horizontal ">
+						<form action="/friend/friend-add" method="post" enctype="multipart/form-data" class="form-horizontal ">
 							<div class="form-group">
 								<div class="col-md-3">
-									<input type="text" id="roleName" name="roleName"
-										   class="form-control" placeholder="角色名">
+									<input type="text" id="friend" name="friend"
+										   class="form-control" placeholder="朋友称呼">
 								</div>
 								<div class="col-md-3">
-									<input type="text" id="roleType" name="roleType"
-										   class="form-control" placeholder="角色类别">
+									<input type="text" id="slogan" name="slogan"
+										   class="form-control" placeholder="标语">
+								</div>
+								<div class="col-md-3">
+									<input type="text" id="link" name="link"
+										   class="form-control" placeholder="链接">
 								</div>
 								<label style="margin-top: -5px" class="col-md-1 control-label">
 									<button type="submit" class="btn btn-sm btn-success">
@@ -79,35 +80,32 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h2><i class="fa fa-table red"></i><span class="break"></span><strong>角色列表</strong></h2>
+							<h2><i class="fa fa-table red"></i><span class="break"></span><strong>分组列表</strong></h2>
 						</div>
 						<div class="panel-body">
 							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th>角色名</th>
-										<th>角色类别</th>
-										<th>是否可用</th>
+										<th>称呼</th>
+										<th>标语</th>
+										<th>链接</th>
 										<th>Status</th>
 									</tr>
 								</thead>
 								<tbody>
 									<#list page.records as record>
 										<tr>
-											<td>${record.roleName}</td>
-											<td>${record.roleType}</td>
-											<td>${record.useable?c}</td>
+											<td>${record.friend}</td>
+											<td>${record.slogan}</td>
+											<td>${record.link}</td>
 											<td>
-												<a class="role-s" style="text-decoration: none" data-toggle="modal" data-target="#myModal1"
-												   data-zid="${record.id}" href="javascript:void(0);">
-													<span class="label label-success">授权</span>
-												</a>
-												<a data-toggle="modal" data-target="#myModal" class="role-u" data-uid="${record.id}"
-												   data-name="${record.roleName}" data-type="${record.roleType}" data-use="${record.useable?c}"
-												   style="text-decoration: none" href="javascript:void(0);">
+												<a data-toggle="modal" data-target="#myModal"
+												   data-uid="${record.id}" data-cid="${record.friend}"
+												   data-sid="${record.slogan}" data-lid="${record.link}"
+												   class="friend-u" style="text-decoration: none" href="javascript:void(0);">
 													<span class="label label-warning">修改</span>
 												</a>
-												<a class="role-d" style="text-decoration: none"
+												<a class="friend-d" style="text-decoration: none"
 												   data-did="${record.id}" href="javascript:void(0);">
 													<span class="label label-danger">删除</span>
 												</a>
@@ -124,67 +122,40 @@
 		<!-- end: Content -->
 	</div><!--/container-->
 
-	<!-- 授权 -->
-	<div class="modal fade" id="myModal1">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">授权角色</h4>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<div class="zTreeDemoBackground left">
-							<ul id="treeDemo" class="ztree"></ul>
-						</div>
-					</div>
-					<div class="form-group" style="margin-left: 350px">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button id="btn-ztree" type="submit" class="btn btn-primary">修改</button>
-					</div>
-
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-
-	<!-- 修改角色 -->
 	<div class="modal fade" id="myModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">修改角色</h4>
+					<h4 class="modal-title">修改组名</h4>
 				</div>
 				<div class="modal-body">
-					<form action="/role/role-update" method="post" enctype="multipart/form-data" class="form-horizontal ">
+					<form action="/friend/friend-update" method="post" enctype="multipart/form-data" class="form-horizontal ">
 						<div class="form-group">
-							<label class="col-md-3 control-label" for="roleNameM1">角色名</label>
+							<label class="col-md-3 control-label" for="friendM">称呼</label>
 							<div class="col-md-6">
-								<input type="hidden" id="idM1" name="id" class="form-control">
-								<input type="text" id="roleNameM1" name="roleName"
+								<input type="hidden" id="idM" name="id" class="form-control">
+								<input type="text" id="friendM" name="friend"
 									   class="form-control" placeholder="">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label" for="roleTypeM1">角色类别</label>
+							<label class="col-md-3 control-label" for="sloganM">标语</label>
 							<div class="col-md-6">
-								<input type="text" id="roleTypeM1" name="roleType"
+								<input type="text" id="sloganM" name="slogan"
 									   class="form-control" placeholder="">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label" for="useableM1">是否可用</label>
+							<label class="col-md-3 control-label" for="linkM">链接</label>
 							<div class="col-md-6">
-								<select id="useableM1" name="useable" class="form-control" size="1">
-									<option value="1">可用</option>
-									<option value="0">不可用</option>
-								</select>
+								<input type="text" id="linkM" name="link"
+									   class="form-control" placeholder="">
 							</div>
 						</div>
 						<div class="form-group" style="margin-left: 350px">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">修改</button>
+							<button type="submit" class="btn btn-primary">修改</button>
 						</div>
 
 					</form>
@@ -192,6 +163,7 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+
 	<div class="clearfix"></div>
 </div>
 
@@ -225,11 +197,7 @@
 		
 	<![endif]-->
 
-	<!-- ztree -->
-	<script type="text/javascript" src="/resources/ztree/js/jquery.ztree.core.js"></script>
-	<script type="text/javascript" src="/resources/ztree/js/jquery.ztree.excheck.js"></script>
-	<script type="text/javascript" src="/resources/myjs/ztree.js"/>
-
+	
 	<!-- page scripts -->
 	<script src="/resources/assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js"></script>
 	<script src="/resources/assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
@@ -240,24 +208,6 @@
 	<script src="/resources/assets/js/jquery.mmenu.min.js"></script>
 	<script src="/resources/assets/js/core.min.js"></script>
 	<script src="/resources/assets/js/bootstrap.min.js"></script>
-
-	<script type="text/javascript">
-		$(function(){
-			// dom加载完毕
-			var $m_btn = $('#modalBtn');
-			var $modal = $('#myModal1');
-			$m_btn.on('click', function(){
-				$modal.modal({backdrop: 'static'});
-			});
-			// 测试 bootstrap 居中
-			$modal.on('shown.bs.modal', function(){
-				var $this = $(this);
-				var $modal_dialog = $this.find('.modal-dialog');
-				var m_top = ( $(window).height() - $modal_dialog.height() )/2;
-				$modal_dialog.css({'margin': m_top + 'px auto'});
-			});
-		});
-	</script>
 
 	<script type="text/javascript">
 		$(function(){
@@ -276,26 +226,23 @@
 			});
 		});
 	</script>
-
-	<script type="text/javascript">
-		$('.role-u').click(function () {
-            var uid = $(this).data('uid');
-            var use = $(this).data('use');
-			var name = $(this).data('name');
-			var type = $(this).data('type');
-			if(use == true) use = 1;
-			else use = 0;
-            $('#idM1').val(uid);
-            $('#useableM1').val(use);
-			$('#roleNameM1').val(name);
-			$('#roleTypeM1').val(type);
-		});
-	</script>
-
 	<!-- inline scripts related to this page -->
 	<!-- end: JavaScript-->
 	<script type="text/javascript">
-		$(".role-d").click(function () {
+		$('.friend-u').click(function () {
+			var id = $(this).data('uid');
+			var friend = $(this).data('cid');
+            var slogan = $(this).data('sid');
+            var link = $(this).data('lid');
+			$('#idM').val(id);
+			$('#friendM').val(friend);
+            $('#sloganM').val(slogan);
+            $('#linkM').val(link);
+        });
+	</script>
+
+	<script type="text/javascript">
+		$(".friend-d").click(function () {
 			if(confirm("是否删除？")) {
 				var id = $(this).data('did');
 				jQuery.ajax({
@@ -304,7 +251,7 @@
 						'Content-Type' : 'application/json'
 					},
 					type : "POST",
-					url : "/role/role-delete/"+id,
+					url : "/friend/friend-delete/"+id,
 					success : function(message, tst, jqXHR) {
 						document.location.reload();
 					}

@@ -1,7 +1,9 @@
 package com.lhd.controller;
 
+import com.lhd.dto.ArticleDto;
 import com.lhd.entity.SysMenu;
 import com.lhd.entity.SysUser;
+import com.lhd.service.Impl.ArticleServiceImpl;
 import com.lhd.service.Impl.SysMenuServiceImpl;
 import com.lhd.service.Impl.SysRoleServiceImpl;
 import com.lhd.service.Impl.SysUserServiceImpl;
@@ -31,7 +33,8 @@ public class BaseController {
     @Autowired
     private SysMenuServiceImpl sysMenuService;
 
-
+    @Autowired
+    private ArticleServiceImpl articleService;
 
     @RequestMapping(value = {"", "index"})
     public String index(Model model) {
@@ -62,5 +65,12 @@ public class BaseController {
     public static void main(String[] args) {
         String id = UUID.randomUUID().toString().replaceAll("-","");
         System.out.println(id);
+    }
+
+    @RequestMapping(value = "test")
+    public String test(Model model){
+        ArticleDto articleDto = articleService.selectArticleDto("007e11c56dc44bf29ea2757fc838c2d2");
+        model.addAttribute("article",articleDto);
+        return "test";
     }
 }

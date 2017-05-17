@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/resources/markdown/lib/marked.min.js"></script>
+</head>
+<body>
+    <textarea hidden="hidden" id="text" style="width: 100px;height: 100px;">${article.content}</textarea>
+    <div id="content"></div>
+    <script>
+        var content = document.getElementById('text').value;
+        alert(content)
+        document.getElementById('content').innerHTML =
+            marked(content);
+    </script>
+</body>
+</html>
