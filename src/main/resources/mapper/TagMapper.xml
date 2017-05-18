@@ -3,5 +3,31 @@
 <mapper namespace="com.lhd.mapper.TagMapper">
 
 
+    <select id="selectCountByTagName" resultType="java.lang.Integer"
+            parameterType="java.lang.String">
+        SELECT count(*)
+        FROM sys_tag
+        WHERE tagName=#{tagName};
+    </select>
+
+
+    <insert id="insertArticleTag" parameterType="com.lhd.entity.ArticleTag">
+        INSERT INTO
+        sys_article_tag(id,tagId,articleId)
+        VALUES (#{id,jdbcType=VARCHAR},#{tagId,jdbcType=VARCHAR},
+                #{articleId,jdbcType=VARCHAR});
+    </insert>
+
+    <delete id="deleteArticleTag" parameterType="java.lang.String">
+        DELETE
+        FROM sys_article_tag
+        WHERE tagId = #{tagId}
+    </delete>
+
+    <select id="selectTagIdByArticleId" resultType="java.lang.String" parameterType="java.lang.String">
+        SELECT tagId
+        FROM sys_article_tag
+        WHERE articleId=#{articleId}
+    </select>
 
 </mapper>

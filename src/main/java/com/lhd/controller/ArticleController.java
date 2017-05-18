@@ -6,9 +6,12 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.lhd.dto.ArticleDto;
 import com.lhd.dto.Message;
 import com.lhd.entity.Article;
+import com.lhd.entity.ArticleTag;
 import com.lhd.entity.Classify;
+import com.lhd.entity.Tag;
 import com.lhd.service.Impl.ArticleServiceImpl;
 import com.lhd.service.Impl.ClassifyServiceImpl;
+import com.lhd.service.Impl.TagServiceImpl;
 import com.lhd.utils.PageUtils;
 import com.lhd.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,9 @@ public class ArticleController {
 
     @Autowired
     private ClassifyServiceImpl classifyService;
+
+    @Autowired
+    private TagServiceImpl tagService;
 
     @RequestMapping(value = "/article-list",method = RequestMethod.GET)
     public String articleList(Model model,String pageNo){
@@ -71,6 +77,7 @@ public class ArticleController {
     @RequestMapping(value = "/article-insert",method = RequestMethod.POST)
     public String articleInsert(Article article){
         article.setId(StringUtils.getUUId());
+        articleTag(article.getId(),article.getTagId());
         article.setClick(0);
         article.setCreateTime(new Date());
         article.setUpdateTime(new Date());
@@ -78,6 +85,29 @@ public class ArticleController {
         article.setUpdateBy("admin");
         articleService.insert(article);
         return "redirect:/article/article-list";
+    }
+
+    /**
+     * 解析传送过来的tagName
+     * @param articleId
+     * @param tagChain
+     */
+    private void articleTag(String articleId,String tagChain){
+        String[] tagName = tagChain.split("[ ]");
+        for (String tagN:tagName) {
+            Integer tagNum = tagService.selectCountByTagName(tagN);
+            if(tagNum == 0) {
+                Tag tag = new Tag();
+                tag.setId(StringUtils.getUUId());
+                tag.setTagName(tagN);
+                tagService.insert(tag);
+                ArticleTag articleTag = new ArticleTag();
+                articleTag.setId(StringUtils.getUUId());
+                articleTag.setTagId(tag.getId());
+                articleTag.setArticleId(articleId);
+                tagService.insertArticleTag(articleTag);
+            }
+        }
     }
 
     @RequestMapping(value = "/article-delete/{articleId}")
@@ -99,6 +129,8 @@ public class ArticleController {
     @RequestMapping(value = "/article-detail/{articleId}",method = RequestMethod.GET)
     public String articleDetail(Model model,@PathVariable("articleId") String articleId){
         ArticleDto article = articleService.selectArticleDto(articleId);
+        List<String> tagIdList = tagService.selectTagIdByArticleId(articleId);
+        article.setTagChain(getTagChain(tagIdList));
         List<Classify> classifies = classifyService.selectList(new EntityWrapper<Classify>());
         article.setContent(article.getContent().trim());
         model.addAttribute("classifies",classifies);
@@ -106,11 +138,26 @@ public class ArticleController {
         return "article/articleDetail";
     }
 
+    /**
+     * 获取标签链
+     * @param tagIdList
+     * @return
+     */
+    private String getTagChain(List<String> tagIdList){
+        String tagChain = "";
+        for (String tagId:tagIdList){
+            Tag tag = tagService.selectById(tagId);
+            if(tag != null&&tag.getTagName() != null)
+                tagChain += " "+tag.getTagName();
+        }
+        return tagChain.trim();
+    }
+
     @RequestMapping(value = "/article-update")
     public String articleUpdate(Article article){
+        articleTag(article.getId(),article.getTagId());
         article.setUpdateBy("admin");
         article.setUpdateTime(new Date());
-        System.out.println(article);
         articleService.updateArticle(article);
         return "redirect:/article/article-list";
     }

@@ -53,6 +53,7 @@ public class TagController {
     public Message tagDelete(@PathVariable("id") String id){
         Message message = new Message();
         boolean tagResult = tagService.deleteById(id);
+        tagService.deleteArticleTag(id);
         if(tagResult == true) {
             message.setMessage("删除成功");
         }else {

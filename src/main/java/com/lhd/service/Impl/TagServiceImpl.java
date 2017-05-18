@@ -3,6 +3,7 @@ package com.lhd.service.Impl;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.lhd.dto.ArticleDto;
 import com.lhd.entity.Article;
+import com.lhd.entity.ArticleTag;
 import com.lhd.entity.Tag;
 import com.lhd.mapper.ArticleMapper;
 import com.lhd.mapper.TagMapper;
@@ -25,4 +26,19 @@ public class TagServiceImpl extends ServiceImpl<TagMapper,Tag> implements ITagSe
     private TagMapper tagMapper;
 
 
+    public Integer selectCountByTagName(String tagName) {
+        return tagMapper.selectCountByTagName(tagName);
+    }
+
+    public Integer insertArticleTag(ArticleTag articleTag) {
+        return tagMapper.insertArticleTag(articleTag);
+    }
+
+    public Integer deleteArticleTag(String tagId) {
+        return tagMapper.deleteArticleTag(tagId);
+    }
+
+    public List<String> selectTagIdByArticleId(String articleId) {
+        return tagMapper.selectTagIdByArticleId(articleId);
+    }
 }

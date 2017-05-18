@@ -50,7 +50,7 @@
             subtitle = #{subtitle,jdbcType=VARCHAR},
             content = #{content,jdbcType=VARCHAR},
             author = #{author,jdbcType=VARCHAR},
-            tag = #{tag,jdbcType=VARCHAR},
+            tagId = #{tagId,jdbcType=VARCHAR},
             classifyId = #{classifyId,jdbcType=VARCHAR},
             updateBy = #{updateBy,jdbcType=VARCHAR},
             updateTime = #{updateTime,jdbcType=TIMESTAMP}
