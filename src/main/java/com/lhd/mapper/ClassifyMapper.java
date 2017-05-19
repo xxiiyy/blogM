@@ -16,5 +16,4 @@ import java.util.Map;
 public interface ClassifyMapper extends BaseMapper<Classify>{
 
 
-
 }

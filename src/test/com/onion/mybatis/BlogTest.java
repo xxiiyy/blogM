@@ -5,7 +5,10 @@ import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.lhd.dto.ArticleDto;
 import com.lhd.entity.Article;
+import com.lhd.entity.Tag;
 import com.lhd.service.Impl.ArticleServiceImpl;
+import com.lhd.service.Impl.TagServiceImpl;
+import com.lhd.utils.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,18 @@ public class BlogTest {
     @Autowired
     private ArticleServiceImpl articleService;
 
+    @Autowired
+    private TagServiceImpl tagService;
+
+    @Test
+    public void test2(){
+        Integer java = tagService.selectCountByTagName("java");
+        System.out.println(java);
+        Tag tag = new Tag();
+        tag.setId(StringUtils.getUUId());
+        tag.setTagName("1");
+        tagService.insert(tag);
+    }
 
     @Test
     public void test(){

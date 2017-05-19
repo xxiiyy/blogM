@@ -2,10 +2,10 @@ package com.lhd.utils;
 
 /**
  * Created by lhd on 2017/5/14.
+ * 分页工具类
  */
 public class PageUtils {
 
-    private static int pageMaxSize;
 
     /**
      * 获取分页html
@@ -41,8 +41,8 @@ public class PageUtils {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         System.out.println(getPagination(2,"find","",2));
     }
 

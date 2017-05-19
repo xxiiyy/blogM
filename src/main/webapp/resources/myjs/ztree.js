@@ -18,10 +18,10 @@ var setting = {
     }
 };
 
-//var zNodes;
+var zNodes;
 
 
-var zNodes = [
+/*var zNodes = [
  {id: 1, pId: 0, name: "父节点1", title: "", checked: true, open: true, iconSkin: "pIcon01"},
  {id: 11, pId: 1, name: "父节点11", title: "", checked: true},
  {id: 111, pId: 11, name: "叶子节点111", title: "", checked: true, isHidden: true},
@@ -40,7 +40,7 @@ var zNodes = [
  {id: 221, pId: 22, name: "叶子节点221", title: ""},
  {id: 222, pId: 22, name: "叶子节点222", title: ""},
  {id: 223, pId: 22, name: "叶子节点223", title: ""},
- ];
+ ];*/
 
 function onCheck(e, treeId, treeNode) {
     count();
@@ -137,7 +137,7 @@ $(document).ready(function () {
 
 
 /**
- * 节点更新
+ * 节点更新没有用户的
  */
 var updateNodes = function (roleId) {
     nodess = "";
@@ -159,7 +159,7 @@ var updateNodes = function (roleId) {
 }
 
 /**
- * 初始化树
+ * 获取数据，初始化树
  * @param roleType
  */
 function initTree(roleId) {

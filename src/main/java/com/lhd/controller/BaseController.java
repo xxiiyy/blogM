@@ -28,9 +28,6 @@ public class BaseController {
     private SysUserServiceImpl sysUserService;
 
     @Autowired
-    private SysRoleServiceImpl sysRoleService;
-
-    @Autowired
     private SysMenuServiceImpl sysMenuService;
 
     @Autowired
@@ -44,7 +41,8 @@ public class BaseController {
         List<SysMenu> menus = new ArrayList<SysMenu>();
         for (String menuId : menuIds) {
             SysMenu sysMenu = sysMenuService.selectMenuByMenuId(menuId);
-            menus.add(sysMenu);
+            if(sysMenu != null)
+                menus.add(sysMenu);
         }
         List<SysMenu> pMenus = SysMenu.buildTree(menus);
         model.addAttribute("user", user);

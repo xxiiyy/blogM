@@ -57,4 +57,10 @@
         WHERE id =  #{id,jdbcType=VARCHAR};
     </update>
 
+    <delete id="deleteArticleTagByArticleId" parameterType="java.lang.String">
+        DELETE
+        FROM sys_article_tag
+        WHERE articleId = #{articleId};
+    </delete>
+
 </mapper>

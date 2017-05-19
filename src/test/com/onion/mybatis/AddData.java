@@ -40,9 +40,9 @@ public class AddData {
         sysMenu.setUpdateBy("admin");
         sysMenu.setCreateTime(new Date());
         sysMenu.setUpdateTime(new Date());
-        sysMenu.setMenuName("用户添加");
+        sysMenu.setMenuName("菜单管理");
         sysMenu.setIcon("fa fa-user");
-        sysMenu.setpId("fd433354452b4d10b8e4eb6544dc59dd");
+        sysMenu.setpId("0");
         sysMenu.setUseable(true);
         sysMenu.setHref("#");
         sysMenuService.insert(sysMenu);

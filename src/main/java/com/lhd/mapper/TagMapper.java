@@ -43,4 +43,18 @@ public interface TagMapper extends BaseMapper<Tag>{
      * @return
      */
     List<String> selectTagIdByArticleId(@Param("articleId") String articleId);
+
+    /**
+     * 使用tagName获取tag
+     * @param tagName
+     * @return
+     */
+    Tag selectTagByTagName(@Param("tagName") String tagName);
+
+    /**
+     * 查看是否存在这么一条articletag
+     * @param paramMap
+     * @return
+     */
+    ArticleTag selectArticleTagExist(@Param("paramMap") Map<String,String> paramMap);
 }

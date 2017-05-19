@@ -8,6 +8,7 @@ import com.lhd.entity.SysUser;
 import com.lhd.entity.Tag;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lhd on 2017/5/14.
@@ -42,5 +43,19 @@ public interface ITagService extends IService<Tag> {
      * @return
      */
     List<String> selectTagIdByArticleId(String articleId);
+
+    /**
+     * 使用tagName获取tag
+     * @param tagName
+     * @return
+     */
+    Tag selectTagByTagName(String tagName);
+
+    /**
+     * 查看是否存在这么一条articletag
+     * @param paramMap
+     * @return
+     */
+    ArticleTag selectArticleTagExist(Map<String,String> paramMap);
 
 }

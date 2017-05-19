@@ -34,4 +34,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper,Article> imple
         return articleMapper.updateArticle(article);
     }
 
+    public int deleteArticleTagByArticleId(String articleId) {
+        return articleMapper.deleteArticleTagByArticleId(articleId);
+    }
+
 }

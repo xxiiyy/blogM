@@ -10,6 +10,13 @@
         WHERE tagName=#{tagName};
     </select>
 
+    <select id="selectTagByTagName" resultType="com.lhd.entity.Tag"
+            parameterType="java.lang.String">
+        SELECT *
+        FROM sys_tag
+        WHERE tagName=#{tagName};
+    </select>
+
 
     <insert id="insertArticleTag" parameterType="com.lhd.entity.ArticleTag">
         INSERT INTO
@@ -28,6 +35,13 @@
         SELECT tagId
         FROM sys_article_tag
         WHERE articleId=#{articleId}
+    </select>
+
+    <select id="selectArticleTagExist" resultType="com.lhd.entity.ArticleTag"
+            parameterType="java.util.HashMap">
+        SELECT *
+        FROM sys_article_tag
+        WHERE articleId=#{paramMap.articleId} and tagId = #{paramMap.tagId}
     </select>
 
 </mapper>

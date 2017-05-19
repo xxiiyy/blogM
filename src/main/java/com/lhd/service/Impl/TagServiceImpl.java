@@ -41,4 +41,13 @@ public class TagServiceImpl extends ServiceImpl<TagMapper,Tag> implements ITagSe
     public List<String> selectTagIdByArticleId(String articleId) {
         return tagMapper.selectTagIdByArticleId(articleId);
     }
+
+    public Tag selectTagByTagName(String tagName) {
+        return tagMapper.selectTagByTagName(tagName);
+    }
+
+    public ArticleTag selectArticleTagExist(Map<String, String> paramMap) {
+        return tagMapper.selectArticleTagExist(paramMap);
+    }
+
 }

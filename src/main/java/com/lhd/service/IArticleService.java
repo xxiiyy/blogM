@@ -33,4 +33,11 @@ public interface IArticleService extends IService<Article> {
      * @return
      */
     int updateArticle(Article article);
+
+    /**
+     * 使用文章id删除articletag
+     * @param articleId
+     * @return
+     */
+    int deleteArticleTagByArticleId(String articleId);
 }

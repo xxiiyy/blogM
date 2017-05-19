@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * Created by lhd on 2017/5/14.
- * 文章查询
+ * 文章mapper
  */
 public interface ArticleMapper extends BaseMapper<Article>{
 
@@ -33,4 +33,11 @@ public interface ArticleMapper extends BaseMapper<Article>{
      * @return
      */
     int updateArticle(Article article);
+
+    /**
+     * 使用文章id删除articletag
+     * @param articleId
+     * @return
+     */
+    int deleteArticleTagByArticleId(@Param("articleId") String articleId);
 }
