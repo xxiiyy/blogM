@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.lhd.entity.SysUser;
 import com.lhd.service.Impl.SysUserServiceImpl;
-import com.sun.org.apache.xml.internal.security.algorithms.Algorithm;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,8 @@ import java.util.List;
  * Created by zhongmc on 2017/5/4.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:config/spring/applicationContext-dao.xml",
-        "classpath:config/spring/applicationContext-service.xml"})
+@ContextConfiguration({"classpath:config/spring/spring-dao.xml",
+        "classpath:config/spring/spring-service.xml"})
 public class UserTest {
 
 

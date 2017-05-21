@@ -17,16 +17,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import static org.bouncycastle.asn1.x500.style.RFC4519Style.o;
 
 /**
  * Created by lhd on 2017/5/14.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:config/spring/applicationContext-dao.xml",
-        "classpath:config/spring/applicationContext-service.xml"})
+@ContextConfiguration({"classpath:config/spring/spring-dao.xml",
+        "classpath:config/spring/spring-service.xml"})
 public class BlogTest {
 
     @Autowired

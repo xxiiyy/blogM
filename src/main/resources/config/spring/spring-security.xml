@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!-- 需要放行的资源 -->
+    <security:http pattern="/WEB-INF/views/*.html" security="none"/>
+    <security:http pattern="/login" security="none"/>
+    <security:http pattern="/resources/**" security="none"/>
+
+    <security:http auto-config="true" >
+        <!-- 使iframe可以加载出数据 -->
+        <security:headers>
+            <!-- 默认DENY -->
+            <security:frame-options policy="SAMEORIGIN"/>
+        </security:headers>
+        <security:intercept-url pattern="/login" access="hasRole('permitAll')" />
+        <security:intercept-url pattern="/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+        <security:form-login login-page="/login" authentication-failure-url="/login?error=1"
+                             login-processing-url="/j_spring_security_check" password-parameter="j_password"
+                             username-parameter="j_username" />
+        <!-- 配置记住我 -->
+        <security:remember-me key="spitterKey" token-validity-seconds="2419200"/>
+        <!-- spring4必须开启,防止csrf攻击 -->
+        <security:csrf disabled="true"/>
+    </security:http>
+
+
+    <!-- 认证管理器-->
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="myUserDetailsService">
+            <security:password-encoder ref="myEncoder">
+                <security:salt-source user-property="salt"/>
+            </security:password-encoder>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <!-- 用户服务-->
+    <bean id="myUserDetailsService"
+          class="com.lhd.security.MyUserDetailsService"></bean>
+
+    <!-- 自定义加密 -->
+    <bean id="myEncoder"
+          class="com.lhd.security.MyPasswordEncode" >
+        <constructor-arg value="md5"/>
+    </bean>
+
+
+    <!-- 注解开启 -->
+    <security:global-method-security secured-annotations="enabled" />
+
+
+</beans>

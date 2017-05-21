@@ -8,6 +8,7 @@ import com.lhd.entity.Tag;
 import com.lhd.service.Impl.TagServiceImpl;
 import com.lhd.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.MessageDigestPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,6 +61,12 @@ public class TagController {
             message.setMessage("删除失败");
         }
         return message;
+    }
+
+    public static void main(String[] args) {
+        MessageDigestPasswordEncoder mdpe = new MessageDigestPasswordEncoder("md5");
+        String s = mdpe.encodePassword("admin", "salt");
+        System.out.println(s);
     }
 
 }
